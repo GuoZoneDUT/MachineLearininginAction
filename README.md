@@ -1,2 +1,2 @@
-# MachineLearininginAction
-PY3
+# Machine Learining in Action
+实战出真知，机器学习实战这本书用代码来告诉你什么是机器学习。书中的代码是基于Python2版本的。其被Python3取代势在必行。通过写代码来提高自己的实战能力，顺便将本书中的代码修改为Ppython3版本。
