@@ -5,12 +5,14 @@
 """
 from numpy import *
 
+#数据转化为矩阵
 def loadDataSet(fileName, delim='\t'):
     fr = open(fileName)
     stringArr = [line.strip().split(delim) for line in fr.readlines()]
     datArr = [list(map(float,line)) for line in stringArr]
     return mat(datArr)
 
+#将矩阵转化进新的空间
 def pca(dataMat, topNfeat=9999999):
     meanVals = mean(dataMat,axis = 0)
     meanRemoved = dataMat - meanVals
@@ -23,6 +25,7 @@ def pca(dataMat, topNfeat=9999999):
     reconMat = (lowDDataMat * redEigVects.T) + meanVals
     return lowDDataMat,reconMat
     
+#将NaN替换成平均值的函数
 def replaceNanWithMean():
     datMat = loadDataSet('secom.data', ' ')
     numFeat =shape(datMat)[1]
