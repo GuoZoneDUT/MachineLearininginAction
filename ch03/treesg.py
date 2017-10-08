@@ -32,14 +32,13 @@ def createDataSet():
 
 #按照给定特征划分数据集
 def splitDataSet(dataSet,axis,value):
-	retDataSet = []
-	for featVec in dataSet:
-		if featVec[axis] == value:
-			reducedFeatVec = featVec[:axis]
-			reducedFeatVec.extend(featVec[axis+1:])
-			retDataSet.append(reducedFeatVec)
-
-	return retDataSet
+    retDataSet = []
+    for featVec in dataSet:
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]
+            reducedFeatVec.extend(featVec[axis+1:])
+            retDataSet.append(reducedFeatVec)
+    return retDataSet
 
 #选择最好的数据集划分方式
 
@@ -93,4 +92,27 @@ def createTree(dataSet,labels):
         myTree[bestFeatLabel][value] = createTree(splitDataSet\
                                         (dataSet,bestFeat,value),subLabels)
     return myTree
+
+def classify(inputTree,featLabels,testVec):
+    firstSide=list(inputTree.keys())
+    firstStr = firstSide[0]
+    secondDict = inputTree[firstStr]
+    featIndex = featLabels.index(firstStr)
+    key = testVec[featIndex]
+    valueOfFeat = secondDict[key]
+    if isinstance(valueOfFeat, dict): 
+        classLabel = classify(valueOfFeat, featLabels, testVec)
+    else: classLabel = valueOfFeat
+    return classLabel
+
+def storeTree(inputTree,filename):
+    import pickle
+    fw = open(filename,'wb')
+    pickle.dump(inputTree,fw)
+    fw.close()
+    
+def grabTree(filename):
+    import pickle
+    fr = open(filename,'rb')
+    return pickle.load(fr)
 
