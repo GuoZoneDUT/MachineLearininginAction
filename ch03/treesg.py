@@ -93,6 +93,7 @@ def createTree(dataSet,labels):
                                         (dataSet,bestFeat,value),subLabels)
     return myTree
 
+#分割
 def classify(inputTree,featLabels,testVec):
     firstSide=list(inputTree.keys())
     firstStr = firstSide[0]
@@ -105,12 +106,14 @@ def classify(inputTree,featLabels,testVec):
     else: classLabel = valueOfFeat
     return classLabel
 
+#储存树
 def storeTree(inputTree,filename):
     import pickle
     fw = open(filename,'wb')
     pickle.dump(inputTree,fw)
     fw.close()
-    
+
+#读入树
 def grabTree(filename):
     import pickle
     fr = open(filename,'rb')
