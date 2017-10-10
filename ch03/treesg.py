@@ -93,7 +93,7 @@ def createTree(dataSet,labels):
                                         (dataSet,bestFeat,value),subLabels)
     return myTree
 
-#分割
+#通过建立好的决策树对测试分类
 def classify(inputTree,featLabels,testVec):
     firstSide=list(inputTree.keys())
     firstStr = firstSide[0]
