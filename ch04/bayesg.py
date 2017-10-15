@@ -120,8 +120,7 @@ def spamTest():
             errorCount += 1
             print("classification error",docList[docIndex])
     print('the error rate is: ',float(errorCount)/len(testSet))
-    #return vocabList,fullText
-
+#以下没做
 def calcMostFreq(vocabList,fullText):
     import operator
     freqDict = {}
